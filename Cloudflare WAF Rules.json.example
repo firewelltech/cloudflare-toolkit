@@ -1,0 +1,25 @@
+[
+    {
+        "name": "Allow Traffic",
+        "description": "Allow Traffic",
+        "enabled": true,
+        "expression": "your ALLOW TRAFFIC Cloudflare expression here.",
+        "action": "skip",
+        "position": {
+            "index": 1
+        },
+        "action_parameters": {
+            "ruleset": "current"
+        }
+    },
+    {
+        "name": "Block Countries",
+        "description": "Block Countries",
+        "enabled": true,
+        "expression": "(ip.geoip.country in {\"AF\" \"BR\" \"KH\" \"CN\" \"HK\" \"HU\" \"IN\" \"ID\" \"IR\" \"IQ\" \"KP\" \"MY\" \"MA\" \"NP\" \"PK\" \"RO\" \"RU\" \"SA\" \"SG\" \"SI\" \"ZA\" \"TR\" \"AE\" \"VN\" \"CO\"} and not cf.client.bot)",
+        "action": "block",
+        "position": {
+            "index": 2
+        }
+    }
+]
