@@ -144,7 +144,6 @@ function Get-Zones {
 
 function Set-ZoneWAFRule {
     param (
-        [parameter(Mandatory = $true)]
         [string[]]$RuleNames,
         [string[]]$Sites,
         [string]$ApiToken = $Script:ApiToken,
@@ -167,6 +166,13 @@ function Set-ZoneWAFRule {
 
     # Set the headers for the API request
     $Headers = Set-Header
+
+    if ($null -eq $RuleNames) {
+        $RuleNames = @()
+        foreach ($Rule in $JsonRules) {
+            $RuleNames += $Rule.name
+        }
+    }
 
     foreach ($Rule in $RuleNames) {
         # Find the target rule based on $RuleNames parameter
